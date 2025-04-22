@@ -43,6 +43,7 @@ cp -r "/mnt/d/Date/tool/Mouselnc" ~/.winprofile/Mouselnc
 config add ~/.zshrc
 config add ~/.config/nvim
 config add ~/.winprofile
+config add ~/README.md
 
 # 初始提交
 config commit -m "Initial commit"
