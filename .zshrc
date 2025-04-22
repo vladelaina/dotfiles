@@ -1,5 +1,24 @@
 export PATH="$HOME/.local/bin:$PATH"
 
+alias con='
+  rsync -u \
+    "/mnt/c/Users/vladelaina/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/Shortcut keys.ahk" \
+    ~/.winprofile/shortcut_keys.ahk &&
+
+  rsync -ru \
+    "/mnt/c/Users/vladelaina/.config/wezterm/" \
+    ~/.winprofile/wezterm/ &&
+
+  rsync -ru \
+    "/mnt/d/Date/tool/Mouselnc/" \
+    ~/.winprofile/Mouselnc/ &&
+
+  config commit -am "$(date "+%Y-%m-%d %H:%M:%S")" &&
+
+  config push -u origin main
+'
+
+
 # ==================================================
 # 🚀软件清单
 # ==================================================
