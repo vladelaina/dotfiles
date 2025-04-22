@@ -117,10 +117,10 @@ return
     ; 将结果赋值给剪贴板
     Clipboard := RTrim(result)
 
-    ; 打开 ChatGPT 网站
-    Run, https://chatgpt.com/
+    ; 打开 ChatGPT 使用 --app 参数
+    Run, "C:\Program Files\Google\Chrome\Application\chrome.exe" --app=https://chatgpt.com/
     ; 等待页面加载（这里可以根据实际情况调整等待时间）
-    Sleep, 3000  ; 等待5秒
+    Sleep, 3000  ; 等待3秒
 
     ; 将 ChatGPT 浏览器窗口切换到前台
     ; 如果你使用的是 Chrome，可以查找 Chrome 窗口来激活它
@@ -136,7 +136,7 @@ return
     }
 
     ; 等待输入框加载完成（根据实际网页速度调整等待时间）
-    Sleep, 300  ; 等待1秒
+    Sleep, 300  ; 等待0.3秒
 
     ; 粘贴剪贴板中的内容到输入框
     Send ^v
