@@ -1,5 +1,12 @@
 export PATH="$HOME/.local/bin:$PATH"
 
+# ==================================================
+# 🏡 裸仓库配置管理 (dotfiles)
+# ==================================================
+# 定义裸仓库管理命令
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+# 同步并提交配置文件
 alias con='
   rsync -u \
     "/mnt/c/Users/vladelaina/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/Shortcut keys.ahk" \
@@ -19,6 +26,7 @@ alias con='
   config log --oneline --all --decorate --reverse -n 12
 '
 
+# 查看配置仓库状态
 cs() {
   rsync -u "/mnt/c/Users/vladelaina/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/Shortcut keys.ahk" ~/.winprofile/shortcut_keys.ahk
   rsync -ru "/mnt/c/Users/vladelaina/.config/wezterm/" ~/.winprofile/wezterm/
@@ -26,7 +34,31 @@ cs() {
   config status
 }
 
+# 硬重置并同步配置
+ch() {
+    rsync -u "/mnt/c/Users/vladelaina/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/Shortcut keys.ahk" ~/.winprofile/shortcut_keys.ahk
+    rsync -ru "/mnt/c/Users/vladelaina/.config/wezterm/" ~/.winprofile/wezterm/
+    rsync -ru "/mnt/d/Date/tool/Mouselnc/" ~/.winprofile/Mouselnc/
+    config reset --hard HEAD
+    config clean -fd
+    rsync -u ~/.winprofile/shortcut_keys.ahk "/mnt/c/Users/vladelaina/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/Shortcut keys.ahk"
+    rsync -ru ~/.winprofile/wezterm/ "/mnt/c/Users/vladelaina/.config/wezterm/"
+    rsync -ru ~/.winprofile/Mouselnc/ "/mnt/d/Date/tool/Mouselnc/"
+    config status
+}
 
+# 查看配置仓库日志
+alias cr='config log --oneline --all --decorate --reverse -n 12'
+
+# 回退到上一个提交
+crhh() {
+    config reset --hard HEAD^
+}
+
+# 回退到指定的提交
+crh() {
+    config reset --hard "$1"
+}
 
 # ==================================================
 # 🚀软件清单
@@ -103,7 +135,6 @@ alias pf='git push -f'                           # 强制推送
 alias pf='git push -f'                           # 强制推送
 alias pf='git push -f'                           # 强制推送
 alias r='git log --oneline --all --decorate --reverse -n 12'  # 查看最近的 12 条提交日志
-alias cr='config log --oneline --all --decorate --reverse -n 12'  # 查看最近的 12 条提交日志
 alias s='git status'                             # 查看 Git 状态
 alias op='git commit -am optimization'           # 提交优化日志
 alias te='git commit -am temporary'              # 提交临时日志
@@ -138,17 +169,6 @@ h() {
     git reset --hard HEAD
     git clean -fd
     git status
-}
-ch() {
-    rsync -u "/mnt/c/Users/vladelaina/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/Shortcut keys.ahk" ~/.winprofile/shortcut_keys.ahk
-    rsync -ru "/mnt/c/Users/vladelaina/.config/wezterm/" ~/.winprofile/wezterm/
-    rsync -ru "/mnt/d/Date/tool/Mouselnc/" ~/.winprofile/Mouselnc/
-    config reset --hard HEAD
-    config clean -fd
-    rsync -u ~/.winprofile/shortcut_keys.ahk "/mnt/c/Users/vladelaina/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/Shortcut keys.ahk"
-    rsync -ru ~/.winprofile/wezterm/ "/mnt/c/Users/vladelaina/.config/wezterm/"
-    rsync -ru ~/.winprofile/Mouselnc/ "/mnt/d/Date/tool/Mouselnc/"
-    config status
 }
 
 # 快速提交当前更改（已暂存的和修改的文件）
@@ -196,18 +216,10 @@ gck() {
 rhh() {
     git reset --hard HEAD^
 }
-crhh() {
-    config reset --hard HEAD^
-}
-
 
 # 回退到指定的提交（硬重置）
 rh() {
     git reset --hard "$1"
-}
-
-crh() {
-    config reset --hard "$1"
 }
 
 function t() {
@@ -343,5 +355,3 @@ setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
-
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
