@@ -66,36 +66,47 @@ return
     Run *RunAs %ComSpec% /c powershell -NoProfile -ExecutionPolicy Bypass -Command "irm https://aizaozao.com/accelerate.php/https://raw.githubusercontent.com/yuaotian/go-cursor-help/refs/heads/master/scripts/run/cursor_win_id_modifier.ps1 | iex"
 return
 
-^!/::  ; 英语单词提取与翻译
+
+^!/:: ; 热键 Ctrl + Alt + / 触发脚本
+    ; 保存当前剪贴板内容
     ClipSaved := ClipboardAll
     Clipboard := ""
+    
+    ; 复制选中的内容到剪贴板
     Send ^c
     ClipWait, 1
     if ErrorLevel {
         return
     }
 
+    ; 获取剪贴板中的文本
     text := Clipboard
     wordList := {}
     result := ""
 
-    result .= "Extract the most difficult 10% of the words from the middle and come with English-Chinese translation (format such as: programming - Chinese translation), without adding sequence numbers in front, just a translation, just give me the words and translation, no extra content, no explanation for the translation:`n"
+    ; 提示信息
+    result .= "Extract the most difficult 10% of the words from the middle and come with English-Chinese translation:`n"
 
+    ; 遍历文本中的单词
     Loop, Parse, text, %A_Space%%A_Tab%`r`n.,;!?()[]{}"- 
     {
         word := Trim(A_LoopField)
         if (word != "") {
+            ; 忽略包含特殊字符的单词
             if InStr(word, "'") || InStr(word, ":") || InStr(word, """") || InStr(word, ",")
                 continue
 
+            ; 转为小写字母
             StringLower, wordLower, word
 
+            ; 忽略数字和长度小于等于3个字符的单词
             if (RegExMatch(wordLower, "\d"))
                 continue
 
             if (StrLen(wordLower) <= 3)
                 continue
 
+            ; 处理唯一的单词
             if (!wordList.HasKey(wordLower)) {
                 wordList[wordLower] := true
                 result .= wordLower "`n"
@@ -103,6 +114,39 @@ return
         }
     }
 
+    ; 将结果赋值给剪贴板
     Clipboard := RTrim(result)
-return
 
+    ; 打开 ChatGPT 网站
+    Run, https://chatgpt.com/
+    ; 等待页面加载（这里可以根据实际情况调整等待时间）
+    Sleep, 3000  ; 等待5秒
+
+    ; 将 ChatGPT 浏览器窗口切换到前台
+    ; 如果你使用的是 Chrome，可以查找 Chrome 窗口来激活它
+    SetTitleMatchMode, 2  ; 模糊匹配窗口标题
+    IfWinExist, ChatGPT
+    {
+        WinActivate  ; 激活窗口
+    }
+    else
+    {
+        MsgBox, 未能找到 ChatGPT 网页窗口，请确保浏览器窗口已打开！
+        return
+    }
+
+    ; 等待输入框加载完成（根据实际网页速度调整等待时间）
+    Sleep, 300  ; 等待1秒
+
+    ; 粘贴剪贴板中的内容到输入框
+    Send ^v
+
+    ; 等待粘贴操作完成
+    Sleep, 200
+
+    ; 模拟按键发送消息
+    Send {Enter}
+
+    ; 恢复剪贴板内容
+    Clipboard := ClipSaved
+return
