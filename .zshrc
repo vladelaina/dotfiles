@@ -140,8 +140,14 @@ h() {
     git status
 }
 ch() {
+    rsync -u "/mnt/c/Users/vladelaina/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/Shortcut keys.ahk" ~/.winprofile/shortcut_keys.ahk
+    rsync -ru "/mnt/c/Users/vladelaina/.config/wezterm/" ~/.winprofile/wezterm/
+    rsync -ru "/mnt/d/Date/tool/Mouselnc/" ~/.winprofile/Mouselnc/
     config reset --hard HEAD
     config clean -fd
+    rsync -u ~/.winprofile/shortcut_keys.ahk "/mnt/c/Users/vladelaina/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/Shortcut keys.ahk"
+    rsync -ru ~/.winprofile/wezterm/ "/mnt/c/Users/vladelaina/.config/wezterm/"
+    rsync -ru ~/.winprofile/Mouselnc/ "/mnt/d/Date/tool/Mouselnc/"
     config status
 }
 
