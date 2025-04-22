@@ -76,6 +76,7 @@ alias pf='git push -f'                           # 强制推送
 alias pf='git push -f'                           # 强制推送
 alias r='git log --oneline --all --decorate --reverse -n 12'  # 查看最近的 12 条提交日志
 alias s='git status'                             # 查看 Git 状态
+alias cs='config status'                             # 查看 Git 状态
 alias op='git commit -am optimization'           # 提交优化日志
 alias te='git commit -am temporary'              # 提交临时日志
 alias ckm='git checkout main'                   # 切换到主分支
