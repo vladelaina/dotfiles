@@ -24,6 +24,10 @@ alias con='
     "/mnt/d/Date/tool/ublock-static-filters.txt" \
     ~/.winprofile/ublock-static-filters.txt &&
 
+  rsync -u \
+    "/mnt/c/Users/vladelaina/.wslconfig" \
+    ~/.winprofile/.wslconfig &&
+
   config commit -am "$(date "+%Y-%m-%d %H:%M:%S")" &&
 
   config push -u origin main
@@ -36,6 +40,7 @@ cs() {
   rsync -ru "/mnt/c/Users/vladelaina/.config/wezterm/" ~/.winprofile/wezterm/
   rsync -ru "/mnt/d/Date/tool/Mouselnc/" ~/.winprofile/Mouselnc/
   rsync -u "/mnt/d/Date/tool/ublock-static-filters.txt" ~/.winprofile/ublock-static-filters.txt
+  rsync -u "/mnt/c/Users/vladelaina/.wslconfig" ~/.winprofile/.wslconfig
   config status
 }
 
@@ -45,11 +50,13 @@ ch() {
     rsync -ru "/mnt/c/Users/vladelaina/.config/wezterm/" ~/.winprofile/wezterm/
     rsync -ru "/mnt/d/Date/tool/Mouselnc/" ~/.winprofile/Mouselnc/
     rsync -u "/mnt/d/Date/tool/ublock-static-filters.txt" ~/.winprofile/ublock-static-filters.txt
+    rsync -u "/mnt/c/Users/vladelaina/.wslconfig" ~/.winprofile/.wslconfig
     config reset --hard HEAD
     rsync -u ~/.winprofile/shortcut_keys.ahk "/mnt/c/Users/vladelaina/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/Shortcut keys.ahk"
     rsync -ru ~/.winprofile/wezterm/ "/mnt/c/Users/vladelaina/.config/wezterm/"
     rsync -ru ~/.winprofile/Mouselnc/ "/mnt/d/Date/tool/Mouselnc/"
     rsync -u ~/.winprofile/ublock-static-filters.txt "/mnt/d/Date/tool/ublock-static-filters.txt"
+    rsync -u ~/.winprofile/.wslconfig "/mnt/c/Users/vladelaina/.wslconfig"
     config status
 }
 
