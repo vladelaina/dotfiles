@@ -196,10 +196,18 @@ gck() {
 rhh() {
     git reset --hard HEAD^
 }
+crhh() {
+    config reset --hard HEAD^
+}
+
 
 # 回退到指定的提交（硬重置）
 rh() {
     git reset --hard "$1"
+}
+
+crh() {
+    config reset --hard "$1"
 }
 
 function t() {
