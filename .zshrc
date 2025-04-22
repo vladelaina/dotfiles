@@ -16,6 +16,7 @@ alias con='
   config commit -am "$(date "+%Y-%m-%d %H:%M:%S")" &&
 
   config push -u origin main
+  config log --oneline --all --decorate --reverse -n 12
 '
 
 
