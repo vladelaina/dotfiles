@@ -58,8 +58,6 @@ return
     WinMove, Lively Wallpaper, , 405, 85, 114, 914
 return
 
-Delete::Run, "C:\Users\vladelaina\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Autosave.bat.lnk"
-^!+x::Run, C:\Users\vladelaina\AppData\Local\Programs\cursor\cursor-id.exe
 
 ;===================================
 ; 特殊功能
