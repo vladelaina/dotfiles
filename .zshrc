@@ -46,7 +46,6 @@ ch() {
     rsync -ru "/mnt/d/Date/tool/Mouselnc/" ~/.winprofile/Mouselnc/
     rsync -u "/mnt/d/Date/tool/ublock-static-filters.txt" ~/.winprofile/ublock-static-filters.txt
     config reset --hard HEAD
-    config clean -fd
     rsync -u ~/.winprofile/shortcut_keys.ahk "/mnt/c/Users/vladelaina/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/Shortcut keys.ahk"
     rsync -ru ~/.winprofile/wezterm/ "/mnt/c/Users/vladelaina/.config/wezterm/"
     rsync -ru ~/.winprofile/Mouselnc/ "/mnt/d/Date/tool/Mouselnc/"
