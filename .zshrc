@@ -169,8 +169,8 @@ m() {
     # 编译
     make OUTPUT_DIR="$OUTPUT_DIR"
 
-    # 启动
-    cmd.exe /C start "" "$WINDOWS_PATH"
+    # 启动（无 UNC 警告）
+    powershell.exe -Command "Start-Process -FilePath '$WINDOWS_PATH' -WorkingDirectory 'C:\Users\vladelaina\Desktop'"
 }
 
 
