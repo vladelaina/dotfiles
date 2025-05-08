@@ -105,6 +105,7 @@ alias cd..='cd ..'                              # 返回上一级目录
 alias de='cd /mnt/c/Users/vladelaina/Desktop'   # 快速进入桌面目录
 alias ca='cd /home/vladelaina/code/Catime/'     # 快速进入项目目录
 alias le='cd /home/vladelaina/code/Learn/' 
+alias vl='cd /home/vladelaina/code/vladelaina'
 alias pw='pwd'                                  # 显示当前目录路径
 alias mk='mkdir'                                # 创建新目录
 alias rmr='rm -rf'                               # 递归删除目录
