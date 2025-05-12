@@ -167,6 +167,8 @@ m() {
     # 关闭现有进程
     powershell.exe -Command "Stop-Process -Name catime -Force -ErrorAction SilentlyContinue"
 
+    rm /mnt/c/Users/vladelaina/Desktop/catime.exe
+
     # 编译
     xmake f -y -m release -o "$OUTPUT_DIR"
     xmake -y
@@ -184,6 +186,7 @@ cm() {
     # 关闭现有进程
     powershell.exe -Command "Stop-Process -Name catime -Force -ErrorAction SilentlyContinue"
 
+    rm /mnt/c/Users/vladelaina/Desktop/catime.exe
     # 编译
     xmake f -y -m release -o "$OUTPUT_DIR"
     xmake -y
@@ -191,10 +194,26 @@ cm() {
     # 启动（无 UNC 警告）
     powershell.exe -Command "Start-Process -FilePath '$WINDOWS_PATH' -WorkingDirectory 'C:\Users\vladelaina\Desktop'"
 }
+unalias mc
+mc() {
+    # 设置输出路径（Linux 路径）
+    OUTPUT_DIR="/mnt/c/Users/vladelaina/Desktop"
+
+    # 转换为 Windows 路径格式（供 PowerShell 使用）
+    WINDOWS_PATH=$(echo "${OUTPUT_DIR}/catime.exe" | sed 's#/mnt/c/#C:/#' | sed 's#/#\\#g')
+
+    # 停止名为 catime 的进程（如果存在）
+    powershell.exe -Command "Stop-Process -Name catime -Force -ErrorAction SilentlyContinue"
+
+    # 删除旧的可执行文件
+    rm -f "${OUTPUT_DIR}/catime.exe"
+
+    # 清理 xmake 构建文件
+    xmake clean
+}
 
 
 alias ma='xmake'
-alias mc='xmake clean'
 alias mr='xmake run'
 
 h() {
