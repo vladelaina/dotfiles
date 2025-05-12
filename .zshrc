@@ -168,14 +168,16 @@ m() {
     powershell.exe -Command "Stop-Process -Name catime -Force -ErrorAction SilentlyContinue"
 
     # 编译
-    make OUTPUT_DIR="$OUTPUT_DIR"
+    xmake f -y -m release -o "$OUTPUT_DIR"
+    xmake -y
 
     # 启动（无 UNC 警告）
     powershell.exe -Command "Start-Process -FilePath '$WINDOWS_PATH' -WorkingDirectory 'C:\Users\vladelaina\Desktop'"
 }
 
 cm() {
-    make clean
+    xmake clean
+
     OUTPUT_DIR="/mnt/c/Users/vladelaina/Desktop"
     WINDOWS_PATH=$(echo "${OUTPUT_DIR}/catime.exe" | sed 's#/mnt/c/#C:/#' | sed 's#/#\\#g')
 
@@ -183,17 +185,17 @@ cm() {
     powershell.exe -Command "Stop-Process -Name catime -Force -ErrorAction SilentlyContinue"
 
     # 编译
-    make OUTPUT_DIR="$OUTPUT_DIR"
+    xmake f -y -m release -o "$OUTPUT_DIR"
+    xmake -y
 
     # 启动（无 UNC 警告）
     powershell.exe -Command "Start-Process -FilePath '$WINDOWS_PATH' -WorkingDirectory 'C:\Users\vladelaina\Desktop'"
 }
 
 
-
-alias ma='make'
-alias mc='make clean'
-alias mr='make run'
+alias ma='xmake'
+alias mc='xmake clean'
+alias mr='xmake run'
 
 h() {
     git reset --hard HEAD
