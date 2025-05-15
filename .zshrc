@@ -178,15 +178,15 @@ m() {
 }
 
 cm() {
+    # 关闭现有进程
+    powershell.exe -Command "Stop-Process -Name catime -Force -ErrorAction SilentlyContinue"
+
+    rm /mnt/c/Users/vladelaina/Desktop/catime.exe
     xmake clean
 
     OUTPUT_DIR="/mnt/c/Users/vladelaina/Desktop"
     WINDOWS_PATH=$(echo "${OUTPUT_DIR}/catime.exe" | sed 's#/mnt/c/#C:/#' | sed 's#/#\\#g')
 
-    # 关闭现有进程
-    powershell.exe -Command "Stop-Process -Name catime -Force -ErrorAction SilentlyContinue"
-
-    rm /mnt/c/Users/vladelaina/Desktop/catime.exe
     # 编译
     xmake f -y -m release -o "$OUTPUT_DIR"
     xmake -y
@@ -194,7 +194,6 @@ cm() {
     # 启动（无 UNC 警告）
     powershell.exe -Command "Start-Process -FilePath '$WINDOWS_PATH' -WorkingDirectory 'C:\Users\vladelaina\Desktop'"
 }
-unalias mc
 mc() {
     # 设置输出路径（Linux 路径）
     OUTPUT_DIR="/mnt/c/Users/vladelaina/Desktop"
@@ -406,3 +405,5 @@ setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
+source "$HOME/.xmake/profile"
+export PATH="$HOME/.xmake:$PATH"
