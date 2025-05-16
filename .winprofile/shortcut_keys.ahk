@@ -38,7 +38,6 @@ return
 ^!k::Run, chrome.exe "https://www.perplexity.ai/"
 ^!y::Run, chrome.exe "https://www.youtube.com/"
 +^!y::Run, chrome.exe "https://ywyj.cn/"
-^!m::Run, chrome.exe --app="https://open.spotify.com/"
 ^!f::Run, chrome.exe --app="https://k021q39fc0u.feishu.cn/mindnotes/ZUDYbJAaOmhBAmn1H4Lc3rI3nGc#mindmap"
 
 ^!c::
