@@ -35,7 +35,6 @@ return
 ^!+c::Run, chrome.exe --app=https://calendar.notion.so/
 ^!b::Run, chrome.exe "https://space.bilibili.com/1862395225/favlist?fid=3228957325&ftype=create"
 ^!g::Run, chrome.exe "https://github.com/vladelaina/Catime"
-^!k::Run, chrome.exe "https://www.perplexity.ai/"
 ^!y::Run, chrome.exe "https://www.youtube.com/"
 +^!y::Run, chrome.exe "https://ywyj.cn/"
 ^!f::Run, chrome.exe --app="https://k021q39fc0u.feishu.cn/mindnotes/ZUDYbJAaOmhBAmn1H4Lc3rI3nGc#mindmap"
