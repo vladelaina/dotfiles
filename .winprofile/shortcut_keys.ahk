@@ -13,6 +13,7 @@
 ^+g::Run, "D:\Date\Tool\geek.exe"
 ^!u::Run, "D:\Date\rare\Upscayl\Upscayl.exe"
 ^!j::Run, "D:\Date\Software\Ifrequently used\bilidown\bilidown.exe"
+^!m::Run, "D:\Date\tool\YouTube-Music.exe"
 
 ;===================================
 ; 文件夹快捷方式
