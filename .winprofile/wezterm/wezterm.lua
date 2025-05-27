@@ -4,7 +4,7 @@ local WSL_HOME = "/home/vladelaina/code/Catime/"
 
 local config = {
 	font_size = 20,
-	font = wezterm.font("JetBrainsMono Nerd Font"),
+	font = wezterm.font("JetBrains Mono"),
 	window_decorations = "RESIZE",
 	color_scheme = "Catppuccin Mocha",
 	text_background_opacity = 0.8,
