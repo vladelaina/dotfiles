@@ -48,15 +48,6 @@ return
 
 ^!r::Run, chrome.exe --app="https://zh-cn.text-to-speech.online/"
 
-;===================================
-; 系统工具
-;===================================
-^!l::
-    Run, "C:\Users\vladelaina\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Lively.lnk"
-    WinWait, Lively Wallpaper
-    WinMove, Lively Wallpaper, , 405, 85, 114, 914
-return
-
 
 ;===================================
 ; 特殊功能
