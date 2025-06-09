@@ -1,4 +1,4 @@
-alias work='cd /mnt/c/Users/vladelaina/Desktop/Freelance/douyin_blue_links_crawled_2025-06-05_to_2025-06-12/code'
+alias work='cd /mnt/c/Users/vladelaina/Desktop/Freelance/'
 # ==================================================
 export PATH="$HOME/.local/bin:$PATH"
 
