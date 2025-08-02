@@ -1,5 +1,5 @@
 local wezterm = require("wezterm")
-local BACKGROUND_IMAGE = "28.jpg"
+local BACKGROUND_IMAGE = "30.jpg"
 local WSL_HOME = "/home/vladelaina/code/Catime/"
 
 local config = {

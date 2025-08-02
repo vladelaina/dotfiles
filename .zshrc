@@ -367,20 +367,30 @@ bindkey -v                                       # 启用 vi 模式
 zstyle :compinstall filename '/home/vladelaina/.zshrc'   # 自动补全配置文件路径
 autoload -Uz compinit                            # 加载补全初始化函数
 compinit                                         # 初始化补全
-
 # ==================================================
-# 🌐 网络代理设置（适用于终端 & Git）
+# 🌐 网络代理设置 (WSL 专用)
 # ==================================================
 
-# 设置终端环境变量，使用本地 10808 端口作为代理
-export HTTPS_PROXY="http://127.0.0.1:10808"
-export HTTP_PROXY="http://127.0.0.1:10808"
-export ALL_PROXY="socks5://127.0.0.1:10808"  # 所有协议走 SOCKS5 代理
+# 1. 动态获取 Windows 主机的 IP 地址
+# WSL 和 Windows 是两个不同的网络环境，必须使用 Windows 的 IP 地址来访问代理
+WINDOWS_HOST_IP=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
 
-# Git 全局代理配置，走 SOCKS5 协议
-git config --global http.proxy "socks5://127.0.0.1:10808"
-git config --global https.proxy "socks5://127.0.0.1:10808"
+# 2. 为终端设置代理环境变量 (小写和大写)
+# 很多程序(如 curl, npm, pip) 会读取这些变量
+if [ -n "$WINDOWS_HOST_IP" ]; then
+    export http_proxy="http://${WINDOWS_HOST_IP}:10808"
+    export https_proxy="http://${WINDOWS_HOST_IP}:10808"
+    export HTTP_PROXY="http://${WINDOWS_HOST_IP}:10808"
+    export HTTPS_PROXY="http://${WINDOWS_HOST_IP}:10808"
+    
+    # 为不支持 http 代理的程序设置 SOCKS5 (可选, 但保留无害)
+    export ALL_PROXY="socks5://${WINDOWS_HOST_IP}:10808"
 
+    # 3. 为 Git 设置代理
+    # Git 也需要知道代理地址
+    git config --global http.proxy "http://${WINDOWS_HOST_IP}:10808"
+    git config --global https.proxy "http://${WINDOWS_HOST_IP}:10808"
+fi
 # ==================================================
 # 🧪 Git 实验性特性配置（可能随版本变动）
 # ==================================================

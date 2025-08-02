@@ -38,7 +38,7 @@ return
 ^!g::Run, chrome.exe "https://github.com/vladelaina/Catime"
 ^!y::Run, chrome.exe "https://www.youtube.com/"
 +^!y::Run, chrome.exe "https://ywyj.cn/"
-^!f::Run, chrome.exe --app="https://k021q39fc0u.feishu.cn/mindnotes/ZUDYbJAaOmhBAmn1H4Lc3rI3nGc#mindmap"
+^!f::Run, chrome.exe --app="https://k021q39fc0u.feishu.cn/minutes/home"
 
 ^!c::
     Run, chrome.exe --app="https://chatgpt.com/"
