@@ -184,14 +184,13 @@ cm() {
     powershell.exe -Command "Stop-Process -Name catime -Force -ErrorAction SilentlyContinue"
 
     rm /mnt/c/Users/vladelaina/Desktop/catime.exe
-    xmake clean
+    rm -rf build
 
     OUTPUT_DIR="/mnt/c/Users/vladelaina/Desktop"
     WINDOWS_PATH=$(echo "${OUTPUT_DIR}/catime.exe" | sed 's#/mnt/c/#C:/#' | sed 's#/#\\#g')
 
-    # 编译
-    xmake f -y -m release -o "$OUTPUT_DIR"
-    xmake -y
+    # 使用 cmake 编译（通过 build.sh）
+    ./build.sh Release "$OUTPUT_DIR"
 
     # 启动（无 UNC 警告）
     powershell.exe -Command "Start-Process -FilePath '$WINDOWS_PATH' -WorkingDirectory 'C:\Users\vladelaina\Desktop'"
@@ -374,7 +373,6 @@ compinit                                         # 初始化补全
 # 1. 动态获取 Windows 主机的 IP 地址
 # WSL 和 Windows 是两个不同的网络环境，必须使用 Windows 的 IP 地址来访问代理
 WINDOWS_HOST_IP=$(ip route | grep default | awk '{print $3}')
-
 # 2. 为终端设置代理环境变量 (小写和大写)
 # 很多程序(如 curl, npm, pip) 会读取这些变量
 if [ -n "$WINDOWS_HOST_IP" ]; then
