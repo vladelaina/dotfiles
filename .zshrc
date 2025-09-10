@@ -1,11 +1,6 @@
-alias work='cd /mnt/c/Users/vladelaina/Desktop/Freelance/'
-# ==================================================
-export PATH="$HOME/.local/bin:$PATH"
-
-# ==================================================
-# 🏡 裸仓库配置管理 (dotfiles)
-# ==================================================
+# ================================================== 🏡 裸仓库配置管理 (dotfiles) ================================================== 
 # 定义裸仓库管理命令
+# ================================================== export PATH="$HOME/.local/bin:$PATH"
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # 同步并提交配置文件
@@ -19,7 +14,7 @@ alias con='
     ~/.winprofile/wezterm/ &&
 
   rsync -ru \
-    "/mnt/d/Date/tool/Mouselnc/" \
+    "/mnt/d/Date/rare/Mouselnc/" \
     ~/.winprofile/Mouselnc/ &&
     
   rsync -u \
@@ -40,7 +35,7 @@ alias con='
 cs() {
   rsync -u "/mnt/c/Users/vladelaina/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/Shortcut keys.ahk" ~/.winprofile/shortcut_keys.ahk
   rsync -ru "/mnt/c/Users/vladelaina/.config/wezterm/" ~/.winprofile/wezterm/
-  rsync -ru "/mnt/d/Date/tool/Mouselnc/" ~/.winprofile/Mouselnc/
+  rsync -ru "/mnt/d/Date/rare/Mouselnc/" ~/.winprofile/Mouselnc/
   rsync -u "/mnt/d/Date/tool/ublock-static-filters.txt" ~/.winprofile/ublock-static-filters.txt
   rsync -u "/mnt/c/Users/vladelaina/.wslconfig" ~/.winprofile/.wslconfig
   config status
