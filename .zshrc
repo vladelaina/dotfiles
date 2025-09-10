@@ -163,17 +163,16 @@ alias ckg='git checkout gh-pages'
 
 
 m() {
-    OUTPUT_DIR="/mnt/c/Users/vladelaina/Desktop"
-    WINDOWS_PATH=$(echo "${OUTPUT_DIR}/catime.exe" | sed 's#/mnt/c/#C:/#' | sed 's#/#\\#g')
-
     # 关闭现有进程
     powershell.exe -Command "Stop-Process -Name catime -Force -ErrorAction SilentlyContinue"
 
     rm /mnt/c/Users/vladelaina/Desktop/catime.exe
 
-    # 编译
-    xmake f -y -m release -o "$OUTPUT_DIR"
-    xmake -y
+    OUTPUT_DIR="/mnt/c/Users/vladelaina/Desktop"
+    WINDOWS_PATH=$(echo "${OUTPUT_DIR}/catime.exe" | sed 's#/mnt/c/#C:/#' | sed 's#/#\\#g')
+
+    # 使用 cmake 编译（通过 build.sh）
+    ./build.sh Release "$OUTPUT_DIR"
 
     # 启动（无 UNC 警告）
     powershell.exe -Command "Start-Process -FilePath '$WINDOWS_PATH' -WorkingDirectory 'C:\Users\vladelaina\Desktop'"
