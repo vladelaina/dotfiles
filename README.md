@@ -87,7 +87,6 @@ git clone --bare https://github.com/vladelaina/dotfiles.git $HOME/.dotfiles
 
 # 创建alias
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 rm -rf ~/.config/nvim ~/.zshrc
 
