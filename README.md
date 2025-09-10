@@ -82,15 +82,14 @@ config push -u origin main
 要在新机器上恢复您的dotfiles，请遵循以下步骤：
 
 ```bash
-# 克隆仓库
-git clone --bare git@github.com:vladelaina/dotfiles.git $HOME/.dotfiles
+git clone --bare https://github.com/vladelaina/dotfiles.git $HOME/.dotfiles
+
 
 # 创建alias
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-# 备份已存在的配置文件
-mkdir -p .config-backup
-config checkout 2>&1 | grep -E "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
+rm -rf ~/.config/nvim ~/.zshrc
 
 # 检出最新版本
 config checkout
