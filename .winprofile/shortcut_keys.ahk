@@ -10,7 +10,7 @@
 #w::Run, "D:\Date\rare\WezTerm\wezterm-gui.exe"
 ^!w::Run, "D:\Date\rare\WezTerm\wezterm-gui.exe"
 +!c::Run, "C:\Program Files\Google\Chrome\Application\chrome.exe"
-^+g::Run, "D:\Date\Tool\geek.exe"
+^+g::Run, "D:\Date\tool\geek.exe"
 ^!u::Run, "D:\Date\rare\Upscayl\Upscayl.exe"
 ^!j::Run, "D:\Date\Software\Ifrequently used\bilidown\bilidown.exe"
 ^!m::Run, "D:\Date\tool\YouTube-Music.exe"
@@ -37,7 +37,6 @@ return
 ^!b::Run, chrome.exe "https://space.bilibili.com/1862395225/favlist?fid=3228957325&ftype=create"
 ^!g::Run, chrome.exe "https://github.com/vladelaina/Catime"
 ^!y::Run, chrome.exe "https://www.youtube.com/"
-+^!y::Run, chrome.exe "https://ywyj.cn/"
 ^!f::Run, chrome.exe --app="https://k021q39fc0u.feishu.cn/minutes/home"
 
 ^!c::
