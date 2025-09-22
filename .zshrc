@@ -14,6 +14,10 @@ alias con='
     ~/.winprofile/wezterm/ &&
 
   rsync -ru \
+    "/mnt/d/Date/tool/backup/" \
+    ~/.winprofile/backup/ &&
+
+  rsync -ru \
     "/mnt/d/Date/rare/Mouselnc/" \
     ~/.winprofile/Mouselnc/ &&
     
