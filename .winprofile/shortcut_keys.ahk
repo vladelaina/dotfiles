@@ -28,7 +28,7 @@
 ; 网站快捷方式
 ;===================================
 ^!n::
-    Run, chrome.exe --app="https://www.notion.so/Catime-TO-Do-19117eaa76e480bab172e9e70309bee5"
+    Run, chrome.exe --app="https://www.notion.so/Daily-learning-26817eaa76e480d0ab25c7bfd1628087"
     WinWaitActive, ahk_class Chrome_WidgetWin_1 ahk_exe chrome.exe
     WinMove, ahk_class Chrome_WidgetWin_1 ahk_exe chrome.exe,, 0, 0, 960, 1080
 return
