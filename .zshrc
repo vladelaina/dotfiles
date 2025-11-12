@@ -160,6 +160,27 @@ alias ckg='git checkout gh-pages'
 # 🛠️ Git 配置与自定义函数
 # ==================================================
 
+# 切换 live-server 启动/停止
+live() {
+    if pgrep -f "live-server" > /dev/null; then
+        echo "Stopping live-server..."
+        pkill -f "live-server"
+        echo "live-server stopped"
+    else
+        echo "Starting live-server..."
+        local log_file="/tmp/live-server-$$.log"
+        nohup live-server . > "$log_file" 2>&1 &
+        disown
+        sleep 1
+        local url=$(grep -oP 'http://[0-9.:]+' "$log_file" | head -1)
+        if [ -n "$url" ]; then
+            echo "live-server started at $url"
+        else
+            echo "live-server started (check with 'ps aux | grep live-server')"
+        fi
+        rm -f "$log_file"
+    fi
+}
 
 m() {
     # 关闭现有进程
