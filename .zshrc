@@ -146,6 +146,11 @@ alias spr='sudo pacman -R'                       # 删除包
 # 从单独的文件中加载 token（安全起见，不直接存储在 .zshrc）
 [ -f ~/.anthropic_tokens ] && source ~/.anthropic_tokens
 
+# Claude 命令快捷方式
+alias cla='claude'                               # 启动 claude
+alias cc='claude -c'                             # claude -c
+alias cr='claude -r'                             # claude -r
+
 # ==================================================
 # 🧬 Git 快捷命令
 # ==================================================
