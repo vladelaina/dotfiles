@@ -90,7 +90,7 @@ alias zs='nvim ~/.zshrc'                        # 编辑配置文件
 # 📝 编辑器 & 项目快捷打开
 # ==================================================
 alias i='nvim'                                  # 启动 nvim 编辑器
-alias nf='neofetch'                             # 显示系统信息
+alias ff='fastfetch'                             # 显示系统信息
 alias we='nvim /mnt/c/Users/vladelaina/.config/wezterm/wezterm.lua'  # 编辑 wezterm 配置
 alias si='sudo nvim'                            # 以 root 权限打开 nvim
 alias iM='nvim Makefile'                        # 快速打开 Makefile
