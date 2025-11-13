@@ -332,13 +332,69 @@ t() {
 }
 
 
-# 捕捉未定义命令，比如 t3、t8
+# ==================================================
+# 🔍 智能命令检测与自动安装
+# ==================================================
+# 捕捉未定义命令，比如 t3、t8，或自动安装缺失的包
 command_not_found_handler() {
+  # 处理 t3、t8 等 tree 命令简写
   if [[ "$1" =~ '^t([0-9]+)$' ]]; then
     local level="${match[1]}"
     tree -L "$level"
+    return $?
+  fi
+
+  # 命令未找到，询问是否安装
+  echo "zsh: command not found: $1"
+  echo -n "Try to install '$1'? [Y/n] "
+  read -r response
+
+  # 默认为 yes（直接回车或输入 y/Y）
+  if [[ -z "$response" ]] || [[ "$response" =~ ^[Yy]$ ]]; then
+    # 检查 yay 是否安装
+    if ! command -v yay &> /dev/null; then
+      echo "yay not found, installing yay..."
+
+      # 检查 git 是否安装
+      if ! command -v git &> /dev/null; then
+        echo "Installing git..."
+        sudo pacman -S --noconfirm git
+      fi
+
+      # 安装 yay
+      echo "Installing yay from AUR..."
+      cd /tmp
+      git clone https://aur.archlinux.org/yay.git
+      cd yay
+      makepkg -si --noconfirm
+      cd ~
+      rm -rf /tmp/yay
+
+      if ! command -v yay &> /dev/null; then
+        echo "yay installation failed, trying pacman for $1..."
+        sudo pacman -S "$1"
+        return $?
+      fi
+      echo "yay installed successfully!"
+    fi
+
+    # 先搜索包并显示信息
+    echo "Searching for '$1'..."
+    echo ""
+    yay -Ss "^$1$" 2>/dev/null || yay -Ss "$1" | head -20
+    echo ""
+    echo -n "Install the package above? [Y/n] "
+    read -r confirm
+
+    if [[ -z "$confirm" ]] || [[ "$confirm" =~ ^[Yy]$ ]]; then
+      yay -S "$1"
+      return $?
+    else
+      echo "Installation cancelled"
+      return 127
+    fi
   else
-    echo "zsh: command not found: $1"
+    echo "Installation cancelled"
     return 127
   fi
 }
