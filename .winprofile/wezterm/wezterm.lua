@@ -2,6 +2,15 @@ local wezterm = require("wezterm")
 local BACKGROUND_IMAGE = "30.jpg"
 local WSL_HOME = "/home/vladelaina/"
 
+-- Greek numerals for tab titles
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+	local greek_numerals = { "Ⅰ", "Ⅱ", "Ⅲ", "Ⅳ", "Ⅴ", "Ⅵ", "Ⅶ", "Ⅷ", "Ⅸ", "Ⅹ" }
+	local title = greek_numerals[tab.tab_index + 1] or tostring(tab.tab_index + 1)
+	return {
+		{ Text = " " .. title .. " " },
+	}
+end)
+
 local config = {
 	font_size = 20,
 	font = wezterm.font("JetBrains Mono"),
