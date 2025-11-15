@@ -133,6 +133,29 @@ alias e..='explorer.exe ..'                     # 打开上一级目录
 alias not='notepad.exe'                          # 启动记事本
 alias nzs='notepad.exe ~/.zshrc'                 # 用记事本编辑 .zshrc
 
+wps() {
+  local target_path="$PWD"
+  local win_user
+  win_user=$(cmd.exe /c echo %USERNAME% 2>/dev/null | tr -d '\r')
+  local win_home="C:\\Users\\${win_user:-vladelaina}\\Desktop"
+
+  # 允许通过 wps /mnt/c/... 指定起始目录
+  if [[ -n "$1" ]]; then
+    target_path="$1"
+    shift
+  fi
+
+  if [[ "$target_path" == /mnt/[a-zA-Z]/* ]]; then
+    local converted
+    converted=$(wslpath -w "$target_path" 2>/dev/null)
+    if [[ -n "$converted" ]]; then
+      win_home=${converted//\\/\\\\}
+    fi
+  fi
+
+  powershell.exe -NoLogo -NoExit -Command "Set-Location -LiteralPath \"$win_home\""
+}
+
 # ==================================================
 # 📦 pacman 包管理（Arch Linux）
 # ==================================================
