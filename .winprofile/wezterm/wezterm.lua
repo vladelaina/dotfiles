@@ -1,5 +1,5 @@
 local wezterm = require("wezterm")
-local BACKGROUND_IMAGE = "30.jpg"
+local BACKGROUND_IMAGE = "43.jpg"
 local WSL_HOME = "/home/vladelaina/"
 
 -- Greek numerals for tab titles
@@ -52,11 +52,6 @@ local config = {
 		{
 			source = {
 				File = string.format("C:\\Users\\vladelaina\\.config\\wezterm\\images\\%s", BACKGROUND_IMAGE),
-			},
-			hsb = {
-				hue = 1.0,
-				saturation = 1.00,
-				brightness = 1,
 			},
 		},
 		{
