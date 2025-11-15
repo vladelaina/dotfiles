@@ -16,9 +16,11 @@ local config = {
 	adjust_window_size_when_changing_font_size = false,
 	default_cursor_style = "BlinkingBar",
 	window_close_confirmation = "NeverPrompt",
+	enable_scroll_bar = true,
+	min_scroll_bar_height = "2cell",
 	window_padding = {
 		left = 35,
-		right = 30,
+		right = 8,
 		top = 20,
 		bottom = 20,
 	},
