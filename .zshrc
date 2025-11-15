@@ -109,6 +109,7 @@ alias ca='cd /home/vladelaina/code/Catime/'     # 快速进入项目目录
 alias le='cd /home/vladelaina/code/Learn/'
 alias vl='cd /home/vladelaina/code/vladelaina'
 alias mem='cd /home/vladelaina/code/MemeTray'  # 快速进入 MemeTray 项目目录
+alias wezterm='cd /mnt/c/Users/vladelaina/.config/wezterm'
 alias pw='pwd'                                  # 显示当前目录路径
 alias mk='mkdir'                                # 创建新目录
 alias rmr='rm -rf'                               # 递归删除目录
