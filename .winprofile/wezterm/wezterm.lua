@@ -11,6 +11,12 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	}
 end)
 
+-- Start maximized
+wezterm.on("gui-startup", function(cmd)
+	local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
+	window:gui_window():maximize()
+end)
+
 local config = {
 	font_size = 20,
 	font = wezterm.font("JetBrains Mono"),
@@ -54,8 +60,7 @@ local config = {
 		},
 	},
 	default_prog = { "wsl.exe", "--cd", WSL_HOME },
-	initial_rows = 30,
-	initial_cols = 115,
+	native_macos_fullscreen_mode = false,
 	colors = {
 		tab_bar = {
 			background = "rgba(0, 0, 0, 0)",
