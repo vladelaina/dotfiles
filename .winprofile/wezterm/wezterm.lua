@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
 local BACKGROUND_IMAGE = "30.jpg"
-local WSL_HOME = "/home/vladelaina/code/Catime/"
+local WSL_HOME = "/home/vladelaina/"
 
 local config = {
 	font_size = 20,
@@ -91,7 +91,13 @@ local config = {
 		{ key = "DownArrow", mods = "ALT|SHIFT", action = wezterm.action.AdjustPaneSize({ "Down", 5 }) },
 
 		-- New tab (opens in home directory)
-		{ key = "t", mods = "CTRL|SHIFT", action = wezterm.action.SpawnTab("DefaultDomain") },
+		{
+			key = "t",
+			mods = "CTRL|SHIFT",
+			action = wezterm.action.SpawnCommandInNewTab({
+				args = { "wsl.exe", "--cd", "/home/vladelaina/" },
+			}),
+		},
 
 		-- Switch between tabs
 		{ key = "Tab", mods = "CTRL", action = wezterm.action.ActivateTabRelative(1) },
