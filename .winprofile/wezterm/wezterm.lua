@@ -45,6 +45,31 @@ local config = {
 	default_prog = { "wsl.exe", "--cd", WSL_HOME },
 	initial_rows = 30,
 	initial_cols = 115,
+	colors = {
+		tab_bar = {
+			background = "rgba(0, 0, 0, 0)",
+			active_tab = {
+				bg_color = "rgba(0, 0, 0, 0)",
+				fg_color = "#cdd6f4",
+			},
+			inactive_tab = {
+				bg_color = "rgba(0, 0, 0, 0)",
+				fg_color = "#6c7086",
+			},
+			inactive_tab_hover = {
+				bg_color = "rgba(0, 0, 0, 0.1)",
+				fg_color = "#cdd6f4",
+			},
+			new_tab = {
+				bg_color = "rgba(0, 0, 0, 0)",
+				fg_color = "#6c7086",
+			},
+			new_tab_hover = {
+				bg_color = "rgba(0, 0, 0, 0.1)",
+				fg_color = "#cdd6f4",
+			},
+		},
+	},
 	keys = {
 		-- Split screen
 		{ key = "-", mods = "ALT", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
