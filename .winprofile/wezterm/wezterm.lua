@@ -71,6 +71,10 @@ local config = {
 		},
 	},
 	keys = {
+		-- Paste with Ctrl+V
+		{ key = "v", mods = "CTRL", action = wezterm.action.PasteFrom("Clipboard") },
+		{ key = "c", mods = "CTRL", action = wezterm.action.CopyTo("Clipboard") },
+
 		-- Split screen
 		{ key = "-", mods = "ALT", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 		{ key = "=", mods = "ALT", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
