@@ -24,6 +24,12 @@ local config = {
 	color_scheme = "Catppuccin Mocha",
 	text_background_opacity = 0.8,
 	window_background_opacity = 0.8,
+	-- Reduce GPU memory usage
+	front_end = "WebGpu",
+	webgpu_power_preference = "LowPower",
+	animation_fps = 1,
+	max_fps = 60,
+	scrollback_lines = 5000,
 	use_fancy_tab_bar = false,
 	automatically_reload_config = true,
 	hide_tab_bar_if_only_one_tab = true,
