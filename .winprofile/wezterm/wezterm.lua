@@ -30,6 +30,9 @@ local config = {
 	animation_fps = 1,
 	max_fps = 60,
 	scrollback_lines = 5000,
+	-- Additional optimizations
+	enable_kitty_graphics = false,
+	enable_wayland = false,
 	use_fancy_tab_bar = false,
 	automatically_reload_config = true,
 	hide_tab_bar_if_only_one_tab = true,
