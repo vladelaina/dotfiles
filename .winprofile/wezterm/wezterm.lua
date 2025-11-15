@@ -46,13 +46,42 @@ local config = {
 	initial_rows = 30,
 	initial_cols = 115,
 	keys = {
-		{ key = "\\", mods = "CTRL", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
-		{ key = "-", mods = "CTRL", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-		{ key = "q", mods = "CTRL", action = wezterm.action.CloseCurrentPane({ confirm = false }) },
-		{ key = "t", mods = "CTRL", action = wezterm.action.SpawnTab("DefaultDomain") },
-		{ key = "n", mods = "CTRL", action = wezterm.action.SpawnWindow },
-		{ key = "Tab", mods = "CTRL", action = wezterm.action.ActivatePaneDirection("Next") },
-		{ key = "Tab", mods = "CTRL|SHIFT", action = wezterm.action.ActivatePaneDirection("Prev") },
+		-- Split screen
+		{ key = "-", mods = "ALT", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+		{ key = "=", mods = "ALT", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+
+		-- Close pane
+		{ key = "w", mods = "CTRL|SHIFT", action = wezterm.action.CloseCurrentPane({ confirm = false }) },
+
+		-- Switch between panes
+		{ key = "LeftArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Left") },
+		{ key = "RightArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Right") },
+		{ key = "UpArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Up") },
+		{ key = "DownArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Down") },
+
+		-- Resize panes
+		{ key = "LeftArrow", mods = "ALT|SHIFT", action = wezterm.action.AdjustPaneSize({ "Left", 5 }) },
+		{ key = "RightArrow", mods = "ALT|SHIFT", action = wezterm.action.AdjustPaneSize({ "Right", 5 }) },
+		{ key = "UpArrow", mods = "ALT|SHIFT", action = wezterm.action.AdjustPaneSize({ "Up", 5 }) },
+		{ key = "DownArrow", mods = "ALT|SHIFT", action = wezterm.action.AdjustPaneSize({ "Down", 5 }) },
+
+		-- New tab (opens in home directory)
+		{ key = "t", mods = "CTRL|SHIFT", action = wezterm.action.SpawnTab("DefaultDomain") },
+
+		-- Switch between tabs
+		{ key = "Tab", mods = "CTRL", action = wezterm.action.ActivateTabRelative(1) },
+		{ key = "Tab", mods = "CTRL|SHIFT", action = wezterm.action.ActivateTabRelative(-1) },
+
+		-- Switch to specific tab by number
+		{ key = "1", mods = "CTRL", action = wezterm.action.ActivateTab(0) },
+		{ key = "2", mods = "CTRL", action = wezterm.action.ActivateTab(1) },
+		{ key = "3", mods = "CTRL", action = wezterm.action.ActivateTab(2) },
+		{ key = "4", mods = "CTRL", action = wezterm.action.ActivateTab(3) },
+		{ key = "5", mods = "CTRL", action = wezterm.action.ActivateTab(4) },
+		{ key = "6", mods = "CTRL", action = wezterm.action.ActivateTab(5) },
+		{ key = "7", mods = "CTRL", action = wezterm.action.ActivateTab(6) },
+		{ key = "8", mods = "CTRL", action = wezterm.action.ActivateTab(7) },
+		{ key = "9", mods = "CTRL", action = wezterm.action.ActivateTab(8) },
 	},
 }
 
