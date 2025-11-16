@@ -53,6 +53,11 @@ local config = {
 			source = {
 				File = string.format("C:\\Users\\vladelaina\\.config\\wezterm\\images\\%s", BACKGROUND_IMAGE),
 			},
+			hsb = {
+				hue = 1.0,
+				saturation = 1.00,
+				brightness = 1,
+			},
 		},
 		{
 			source = {
