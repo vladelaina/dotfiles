@@ -477,11 +477,11 @@ setopt HIST_REDUCE_BLANKS
 # 🐮 Cowsay 随机动物函数
 # ==================================================
 cow() {
-  # 获取所有可用的 cow 文件列表（跳过第一行标题）
-  local cows=($(/usr/bin/cowsay -l | tail -n +2))
+  # 获取所有可用的 cow 文件列表（跳过第一行标题，过滤空值）
+  local cows=($(/usr/bin/cowsay -l | tail -n +2 | tr -s ' ' '\n' | grep -v '^$'))
 
   # 随机选择一个动物
-  local random_cow=${cows[$RANDOM % ${#cows[@]}]}
+  local random_cow=${cows[$RANDOM % ${#cows[@]} + 1]}
 
   # 调用 cowsay，使用随机动物和所有参数
   /usr/bin/cowsay -f "$random_cow" "$*"
