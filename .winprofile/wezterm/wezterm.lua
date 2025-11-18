@@ -1,5 +1,5 @@
 local wezterm = require("wezterm")
-local BACKGROUND_IMAGE = "23.jpg"
+local BACKGROUND_IMAGE = "56.jpg"
 local WSL_HOME = "/home/vladelaina/"
 
 -- Greek numerals for tab titles

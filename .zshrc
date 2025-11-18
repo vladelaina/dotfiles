@@ -188,7 +188,8 @@ alias cr='claude -r'                             # claude -r
 # ==================================================
 # 🌐 服务器连接
 # ==================================================
-alias ms='mosh $MOSH_SERVER'                     # 快速连接 mosh 服务器
+alias ms='mosh $MOSH_SERVER'                     # 快速连接 mosh 服务器 (root)
+alias wsv='ssh $SSH_SERVER'                      # 快速连接 ssh 服务器 (vladelaina)
 
 # ==================================================
 # 🧬 Git 快捷命令
@@ -471,6 +472,20 @@ setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
+
+# ==================================================
+# 🐮 Cowsay 随机动物函数
+# ==================================================
+cow() {
+  # 获取所有可用的 cow 文件列表（跳过第一行标题）
+  local cows=($(/usr/bin/cowsay -l | tail -n +2))
+
+  # 随机选择一个动物
+  local random_cow=${cows[$RANDOM % ${#cows[@]}]}
+
+  # 调用 cowsay，使用随机动物和所有参数
+  /usr/bin/cowsay -f "$random_cow" "$*"
+}
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
