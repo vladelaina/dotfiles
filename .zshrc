@@ -184,6 +184,7 @@ alias yr='yay -R'                                # 删除包
 alias cla='claude'                               # 启动 claude
 alias cc='claude -c'                             # claude -c
 alias cr='claude -r'                             # claude -r
+alias cac='cd /home/vladelaina/code/Catime && claude -c'  # 切换到 Catime 目录并启动 claude -c
 
 # ==================================================
 # 🌐 服务器连接
