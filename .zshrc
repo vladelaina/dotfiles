@@ -288,6 +288,11 @@ mc() {
 alias ma='xmake'
 alias mr='xmake run'
 
+cam() {
+    cd /home/vladelaina/code/Catime/
+    cm
+}
+
 h() {
     git reset --hard HEAD
     git clean -fd
