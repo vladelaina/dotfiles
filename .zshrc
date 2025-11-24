@@ -106,6 +106,7 @@ alias cd..='cd ..'                              # 返回上一级目录
 alias de='cd /mnt/c/Users/vladelaina/Desktop'   # 快速进入桌面目录
 alias code='cd /home/vladelaina/code'           # 快速进入 code 目录
 alias ca='cd /home/vladelaina/code/Catime/'     # 快速进入项目目录
+alias wca='cd /mnt/d/Date/code/Catime'          # 快速进入 Windows 端 Catime 目录
 alias le='cd /home/vladelaina/code/Learn/'
 alias vl='cd /home/vladelaina/code/vladelaina'
 alias mem='cd /home/vladelaina/code/MemeTray'  # 快速进入 MemeTray 项目目录
