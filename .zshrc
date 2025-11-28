@@ -329,7 +329,7 @@ tep() {
 # 添加所有更改、提交并推送
 ap() {
     git add .
-    git commit -am "$*"
+    git commit -m "$*"
     git push
 }
 
@@ -340,7 +340,7 @@ amend() {
 
 # 切换分支或检出文件
 gck() {
-    git checkout "$*"
+    git checkout "$@"
 }
 
 # 回退到上一个提交（硬重置）
