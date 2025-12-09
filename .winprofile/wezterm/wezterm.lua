@@ -1,5 +1,5 @@
 local wezterm = require("wezterm")
-local BACKGROUND_IMAGE = "13.jpg"
+local BACKGROUND_IMAGE = "52.jpg"
 local WSL_HOME = "/home/vladelaina/"
 
 -- Greek numerals for tab titles
@@ -48,26 +48,26 @@ local config = {
     top = 20,
     bottom = 20,
   },
-  background = {
-    {
-      source = {
-        File = string.format("C:\\Users\\vladelaina\\.config\\wezterm\\images\\%s", BACKGROUND_IMAGE),
-      },
-      hsb = {
-        hue = 1.0,
-        saturation = 1.00,
-        brightness = 1,
-      },
-    },
-    {
-      source = {
-        Color = "#282c35",
-      },
-      width = "100%",
-      height = "100%",
-      opacity = 0.80,
-    },
-  },
+	background = {
+		{
+			source = {
+				File = string.format("C:\\Users\\vladelaina\\.config\\wezterm\\images\\%s", BACKGROUND_IMAGE),
+			},
+			hsb = {
+				hue = 1.0,
+				saturation = 0.8,
+				brightness = 0.25,
+			},
+		},
+		{
+			source = {
+				Color = "#282c35",
+			},
+			width = "100%",
+			height = "100%",
+			opacity = 0.15,
+		},
+	},
   default_prog = { "wsl.exe", "--cd", WSL_HOME },
   native_macos_fullscreen_mode = false,
   colors = {
