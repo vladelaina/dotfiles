@@ -2,6 +2,31 @@ local wezterm = require("wezterm")
 local BACKGROUND_IMAGE = "13.jpg"
 local WSL_HOME = "/home/vladelaina/"
 
+-- Smart clipboard paste function
+local function smart_paste(window, pane)
+  -- Check if clipboard has an image
+  local has_image = wezterm.run_child_process({
+    "wsl.exe", "bash", "-c",
+    "powershell.exe -Command 'if (Get-Clipboard -Format Image) { exit 0 } else { exit 1 }' 2>/dev/null"
+  })
+
+  if has_image then
+    -- Clipboard has image, get the file path using clip2path script
+    local success, stdout = wezterm.run_child_process({
+      "wsl.exe", "bash", "-c",
+      "/home/vladelaina/.local/bin/clip2path"
+    })
+    if success and stdout and stdout ~= "" then
+      window:perform_action(wezterm.action.SendString(stdout), pane)
+    else
+      window:perform_action(wezterm.action.PasteFrom("Clipboard"), pane)
+    end
+  else
+    -- Clipboard has text, use normal paste
+    window:perform_action(wezterm.action.PasteFrom("Clipboard"), pane)
+  end
+end
+
 -- Greek numerals for tab titles
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
   local greek_numerals = { "Ⅰ", "Ⅱ", "Ⅲ", "Ⅳ", "Ⅴ", "Ⅵ", "Ⅶ", "Ⅷ", "Ⅸ", "Ⅹ" }
@@ -96,13 +121,17 @@ local config = {
     },
   },
   keys = {
-    -- Paste with Ctrl+V
-    { key = "v",          mods = "CTRL",       action = wezterm.action.PasteFrom("Clipboard") },
+    -- Smart paste with Ctrl+V: if image, insert path; if text, paste normally
+    {
+      key = "v",
+      mods = "CTRL",
+      action = wezterm.action_callback(smart_paste),
+    },
     { key = "c",          mods = "CTRL",       action = wezterm.action.CopyTo("Clipboard") },
 
     -- Split screen
-    { key = "-",          mods = "ALT",        action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-    { key = "=",          mods = "ALT",        action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+    { key = "-",          mods = "ALT",        action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+    { key = "=",          mods = "ALT",        action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 
     -- Close pane
     { key = "w",          mods = "CTRL|SHIFT", action = wezterm.action.CloseCurrentPane({ confirm = false }) },
