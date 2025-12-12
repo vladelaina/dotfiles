@@ -113,6 +113,21 @@ alias caw='cd /home/vladelaina/code/web/Catime'  # 快速进入 web/Catime 目�
 alias le='cd /home/vladelaina/code/Learn/'
 alias vl='cd /home/vladelaina/code/vladelaina'
 alias mem='cd /home/vladelaina/code/MemeTray'  # 快速进入 MemeTray 项目目录
+alias ne='cd /mnt/d/code/NekoTick'               # 快速进入 NekoTick 目录
+
+# NekoTick 开发模式：开关控制（有则关，无则开），后台静默运行
+unalias nek 2>/dev/null # 确保移除同名别名，避免冲突
+nek() {
+    powershell.exe -Command "
+    if ((Get-Process -Name NekoTick -ErrorAction SilentlyContinue) -or (Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue)) {
+        Stop-Process -Name NekoTick -Force -ErrorAction SilentlyContinue;
+        Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess | ForEach-Object { Stop-Process -Id \$_ -Force }
+    } else {
+        Start-Process cmd -ArgumentList '/c cd /d D:\code\NekoTick && pnpm tauri dev' -WindowStyle Hidden
+    }
+    "
+}
+
 alias wezterm='cd /mnt/c/Users/vladelaina/.config/wezterm'
 alias pw='pwd'                                  # 显示当前目录路径
 alias mk='mkdir'                                # 创建新目录
