@@ -521,3 +521,4 @@ export NVM_DIR="$HOME/.nvm"
 # ==================================================
 alias geminic='gemini -r latest'
 
+alias neg='ne && geminic'
