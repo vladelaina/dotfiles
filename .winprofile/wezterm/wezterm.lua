@@ -43,13 +43,13 @@ wezterm.on("gui-startup", function(cmd)
 end)
 
 local config = {
-	font_size = 13,
-	line_height = 1.2,
-	font = wezterm.font("JetBrains Mono"),
-	window_decorations = "RESIZE",
-	color_scheme = "Catppuccin Mocha",
-	text_background_opacity = 0.8,
-	window_background_opacity = 0.8,  -- Reduce GPU memory usage
+  font_size = 10,
+  line_height = 1.2,
+  font = wezterm.font("JetBrains Mono"),
+  window_decorations = "RESIZE",
+  color_scheme = "Catppuccin Mocha",
+  text_background_opacity = 0.8,
+  window_background_opacity = 0.8, -- Reduce GPU memory usage
   front_end = "WebGpu",
   webgpu_power_preference = "LowPower",
   animation_fps = 1,
@@ -73,26 +73,26 @@ local config = {
     top = 20,
     bottom = 20,
   },
-	background = {
-		{
-			source = {
-				File = string.format("C:\\Users\\vladelaina\\.config\\wezterm\\images\\%s", BACKGROUND_IMAGE),
-			},
-			hsb = {
-				hue = 1.0,
-				saturation = 0.8,
-				brightness = 0.25,
-			},
-		},
-		{
-			source = {
-				Color = "#282c35",
-			},
-			width = "100%",
-			height = "100%",
-			opacity = 0.15,
-		},
-	},
+  background = {
+    {
+      source = {
+        File = string.format("C:\\Users\\vladelaina\\.config\\wezterm\\images\\%s", BACKGROUND_IMAGE),
+      },
+      hsb = {
+        hue = 1.0,
+        saturation = 0.8,
+        brightness = 0.25,
+      },
+    },
+    {
+      source = {
+        Color = "#282c35",
+      },
+      width = "100%",
+      height = "100%",
+      opacity = 0.15,
+    },
+  },
   default_prog = { "wsl.exe", "--cd", WSL_HOME },
   native_macos_fullscreen_mode = false,
   colors = {
