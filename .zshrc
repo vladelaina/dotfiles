@@ -519,6 +519,7 @@ export NVM_DIR="$HOME/.nvm"
 # ==================================================
 # ♊ Gemini CLI Context Wrapper (Alias)
 # ==================================================
-alias geminic='gemini -r latest'
+alias gec='gemini -r latest'
+alias ge='gemini'
 
-alias neg='ne && geminic'
+alias neg='ne && gec'

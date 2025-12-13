@@ -43,7 +43,7 @@ wezterm.on("gui-startup", function(cmd)
 end)
 
 local config = {
-  font_size = 10,
+  font_size = 9,
   line_height = 1.2,
   font = wezterm.font("JetBrains Mono"),
   window_decorations = "RESIZE",
