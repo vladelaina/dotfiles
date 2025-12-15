@@ -108,6 +108,7 @@ alias code='cd /home/vladelaina/code'           # 快速进入 code 目录
 alias ca='cd /home/vladelaina/code/Catime/'     # 快速进入项目目录
 alias cas='cd /home/vladelaina/code/Catime/ && git status'  # 快速进入 Catime 目录并查看 git 状态
 alias cap='cd /home/vladelaina/code/Catime-Plugins'  # 快速进入 Catime-Plugins 目录
+alias catime-plugins='cd /mnt/c/Users/vladelaina/AppData/Local/Catime/resources/plugins' # 快速进入 Catime Plugins 目录
 alias wca='cd /mnt/d/Date/code/Catime'          # 快速进入 Windows 端 Catime 目录
 alias caw='cd /home/vladelaina/code/web/Catime'  # 快速进入 web/Catime 目录
 alias le='cd /home/vladelaina/code/Learn/'
