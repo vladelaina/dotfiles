@@ -45,7 +45,7 @@ return
     WinMove, ahk_class Chrome_WidgetWin_1 ahk_exe chrome.exe,, 0, 0, 960, 1080
 return
 
-^!r::Run, chrome.exe --app="https://zh-cn.text-to-speech.online/"
+
 
 
 ;===================================
