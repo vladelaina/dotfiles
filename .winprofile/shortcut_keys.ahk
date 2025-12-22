@@ -12,7 +12,6 @@
 +!c::Run, "C:\Program Files\Google\Chrome\Application\chrome.exe"
 ^+g::Run, "D:\Date\tool\geek.exe"
 ^!u::Run, "D:\Date\rare\Upscayl\Upscayl.exe"
-^!j::Run, "D:\Date\Software\Ifrequently used\bilidown\bilidown.exe"
 ^!m::Run, "D:\Date\tool\YouTube-Music.exe"
 
 ;===================================
