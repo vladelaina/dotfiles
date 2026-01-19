@@ -115,6 +115,9 @@ alias le='cd /home/vladelaina/code/Learn/'
 alias vl='cd /home/vladelaina/code/vladelaina'
 alias mem='cd /home/vladelaina/code/MemeTray'  # 快速进入 MemeTray 项目目录
 alias ne='cd /mnt/d/code/NekoTick'               # 快速进入 NekoTick 目录
+alias nec='cd /mnt/d/code/NekoTick/worktrees/calendar'
+alias net='cd /mnt/d/code/NekoTick/worktrees/todo'
+alias nen='cd /mnt/d/code/NekoTick/worktrees/notes'
 
 # NekoTick 开发模式：开关控制（有则关，无则开），后台静默运行
 unalias nek 2>/dev/null # 确保移除同名别名，避免冲突
