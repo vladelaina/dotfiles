@@ -302,9 +302,9 @@ cm() {
     powershell.exe -Command "Start-Process -FilePath '$WINDOWS_PATH' -WorkingDirectory 'C:\Users\vladelaina\Desktop'"
 }
 alias mm='git merge main'
-alias mc='git merge calendar'
-alias mt='git merge todo'
-alias mn='git merge notes'
+alias mc='git -C /mnt/d/code/NekoTick merge calendar'
+alias mt='git -C /mnt/d/code/NekoTick merge todo'
+alias mn='git -C /mnt/d/code/NekoTick merge notes'
 
 
 alias ma='xmake'
