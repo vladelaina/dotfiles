@@ -305,6 +305,7 @@ alias mm='git merge main'
 alias mc='git -C /mnt/d/code/NekoTick merge calendar'
 alias mt='git -C /mnt/d/code/NekoTick merge todo'
 alias mn='git -C /mnt/d/code/NekoTick merge notes'
+alias mp='git -C /mnt/d/code/NekoTick push origin main'
 
 
 alias ma='xmake'
