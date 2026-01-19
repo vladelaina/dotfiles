@@ -129,6 +129,17 @@ nek() {
     "
 }
 
+unalias nelic 2>/dev/null
+nelic() {
+    powershell.exe -Command "
+    if (Get-NetTCPConnection -LocalPort 8787 -ErrorAction SilentlyContinue) {
+        Get-NetTCPConnection -LocalPort 8787 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess | ForEach-Object { Stop-Process -Id \$_ -Force }
+    } else {
+        Start-Process cmd -ArgumentList '/c cd /d D:\code\NekoTick && pnpm dev:license-server' -WindowStyle Hidden
+    }
+    "
+}
+
 alias wezterm='cd /mnt/c/Users/vladelaina/.config/wezterm'
 alias pw='pwd'                                  # 显示当前目录路径
 alias mk='mkdir'                                # 创建新目录
@@ -287,22 +298,10 @@ cm() {
     # 启动（无 UNC 警告）
     powershell.exe -Command "Start-Process -FilePath '$WINDOWS_PATH' -WorkingDirectory 'C:\Users\vladelaina\Desktop'"
 }
-mc() {
-    # 设置输出路径（Linux 路径）
-    OUTPUT_DIR="/mnt/c/Users/vladelaina/Desktop"
-
-    # 转换为 Windows 路径格式（供 PowerShell 使用）
-    WINDOWS_PATH=$(echo "${OUTPUT_DIR}/catime.exe" | sed 's#/mnt/c/#C:/#' | sed 's#/#\\#g')
-
-    # 停止名为 catime 的进程（如果存在）
-    powershell.exe -Command "Stop-Process -Name catime -Force -ErrorAction SilentlyContinue"
-
-    # 删除旧的可执行文件
-    rm -f "${OUTPUT_DIR}/catime.exe"
-
-    # 清理 xmake 构建文件
-    xmake clean
-}
+alias mm='git merge main'
+alias mc='git merge calendar'
+alias mt='git merge todo'
+alias mn='git merge notes'
 
 
 alias ma='xmake'
