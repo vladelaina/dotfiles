@@ -5,6 +5,22 @@
 ;Windows -> #
 
 ;===================================
+; 虚拟桌面切换 (Win + 1/2/3...)
+;===================================
+; 工具路径
+VD_Path := "D:\Date\tool\VirtualDesktop11-24H2.exe"
+
+$#1::Run, "%VD_Path%" /Switch:0,, Hide
+$#2::Run, "%VD_Path%" /Switch:1,, Hide
+$#3::Run, "%VD_Path%" /Switch:2,, Hide
+$#4::Run, "%VD_Path%" /Switch:3,, Hide
+$#5::Run, "%VD_Path%" /Switch:4,, Hide
+$#6::Run, "%VD_Path%" /Switch:5,, Hide
+$#7::Run, "%VD_Path%" /Switch:6,, Hide
+$#8::Run, "%VD_Path%" /Switch:7,, Hide
+$#9::Run, "%VD_Path%" /Switch:8,, Hide
+
+;===================================
 ; 常用应用程序
 ;===================================
 #w::Run, "D:\Date\rare\WezTerm\wezterm-gui.exe"
