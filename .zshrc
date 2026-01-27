@@ -206,19 +206,10 @@ alias ys='yay -S'                                # 安装 AUR 包
 alias yr='yay -R'                                # 删除包
 
 # ==================================================
-# 🤖 Anthropic API 配置切换
+# ♊ Gemini API 配置切换
 # ==================================================
 # 从单独的文件中加载 token（安全起见，不直接存储在 .zshrc）
-[ -f ~/.config/tokens/anthropic_tokens ] && source ~/.config/tokens/anthropic_tokens
-
-# 从单独的文件中加载服务器配置
-[ -f ~/.config/tokens/server_config ] && source ~/.config/tokens/server_config
-
-# Claude 命令快捷方式
-alias cla='claude'                               # 启动 claude
-alias cc='claude -c'                             # claude -c
-alias cr='claude -r'                             # claude -r
-alias cac='cd /home/vladelaina/code/Catime && claude -c'  # 切换到 Catime 目录并启动 claude -c
+[ -f ~/.config/tokens/gemini_tokens ] && source ~/.config/tokens/gemini_tokens
 
 # ==================================================
 # 🌐 服务器连接
@@ -527,3 +518,4 @@ alias gec='gemini -r latest'
 alias ge='gemini'
 
 alias neg='ne && gec'
+export PATH="$HOME/.local/bin:$PATH"
