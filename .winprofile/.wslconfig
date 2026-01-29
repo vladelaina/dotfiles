@@ -1,6 +1,6 @@
-[experimental]
-autoMemoryReclaim=gradual  
+[wsl2]
 networkingMode=mirrored
 dnsTunneling=true
 firewall=true
 autoProxy=false
+autoMemoryReclaim=gradual

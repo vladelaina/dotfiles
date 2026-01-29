@@ -157,7 +157,7 @@ alias la='ls -a'                                 # 显示包括隐藏文件的�
 alias ex='exit'                                  # 快速退出 shell
 alias ba='bash'                                  # 启动 bash 终端
 alias top='htop'                                 # 启动 htop 资源管理器
-alias goo='curl -o /dev/null https://www.google.com -w "%{time_total} seconds\n" -s'  # 测试访问 Google 所需时间
+alias goo='curl -so /dev/null -w "DNS: %{time_namelookup}s | Connect: %{time_connect}s | Total: %{time_total}s\n" https://www.google.com --connect-timeout 5'  # 测试访问 Google 速度 (带超时和详情)
 
 # ==================================================
 # 🪟 Windows 集成
@@ -445,46 +445,37 @@ zstyle :compinstall filename '/home/vladelaina/.zshrc'   # 自动补全配置文
 autoload -Uz compinit                            # 加载补全初始化函数
 compinit                                         # 初始化补全
 # ==================================================
-# 🌐 网络代理设置 (WSL 专用)
+# 🌐 网络代理设置 (优化版)
 # ==================================================
+# 端口定义
+export HOST_PROXY_PORT=10808
 
-# 1. 动态获取 Windows 主机的 IP 地址
-# WSL 和 Windows 是两个不同的网络环境，必须使用 Windows 的 IP 地址来访问代理
-WINDOWS_HOST_IP=$(ip route | grep default | awk '{print $3}')
-# 2. 为终端设置代理环境变量 (小写和大写)
-# 很多程序(如 curl, npm, pip) 会读取这些变量
-if [ -n "$WINDOWS_HOST_IP" ]; then
-    export http_proxy="http://${WINDOWS_HOST_IP}:10808"
-    export https_proxy="http://${WINDOWS_HOST_IP}:10808"
-    export HTTP_PROXY="http://${WINDOWS_HOST_IP}:10808"
-    export HTTPS_PROXY="http://${WINDOWS_HOST_IP}:10808"
-    
-    # 为不支持 http 代理的程序设置 SOCKS5 (可选, 但保留无害)
-    export ALL_PROXY="socks5://${WINDOWS_HOST_IP}:10808"
-
-    # 3. 为 Git 设置代理
-    # Git 也需要知道代理地址
-    git config --global http.proxy "http://${WINDOWS_HOST_IP}:10808"
-    git config --global https.proxy "http://${WINDOWS_HOST_IP}:10808"
+# 获取宿主机 IP
+# 尝试检测是否启用了镜像网络模式
+if grep -q "networkingMode=mirrored" /mnt/c/Users/vladelaina/.wslconfig 2>/dev/null; then
+    export WINDOWS_HOST_IP="127.0.0.1"
+else
+    # 传统 NAT 模式获取 IP
+    export WINDOWS_HOST_IP=$(ip route | grep default | awk '{print $3}')
 fi
-# ==================================================
-# 🧪 Git 实验性特性配置（可能随版本变动）
-# ==================================================
 
-# 自动内存回收策略（"gradual" 表示逐步释放）
-git config --global experimental.autoMemoryReclaim gradual
+# 开启代理函数
+proxy() {
+    export http_proxy="http://${WINDOWS_HOST_IP}:${HOST_PROXY_PORT}"
+    export https_proxy="http://${WINDOWS_HOST_IP}:${HOST_PROXY_PORT}"
+    export HTTP_PROXY="http://${WINDOWS_HOST_IP}:${HOST_PROXY_PORT}"
+    export HTTPS_PROXY="http://${WINDOWS_HOST_IP}:${HOST_PROXY_PORT}"
+    export ALL_PROXY="socks5://${WINDOWS_HOST_IP}:${HOST_PROXY_PORT}"
+}
 
-# 启用镜像式网络模式（可能提升某些操作性能）
-git config --global experimental.networkingMode mirrored
+# 关闭代理函数
+unproxy() {
+    unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY ALL_PROXY
+    echo "🚫 Proxy OFF"
+}
 
-# 启用 DNS 隧道功能（可能规避某些 DNS 屏蔽）
-git config --global experimental.dnsTunneling true
-
-# 启用 Git 内部防火墙机制（增强安全性）
-git config --global experimental.firewall true
-
-# 禁用 Git 的自动代理功能（防止和自定义代理冲突）
-git config --global experimental.autoProxy false
+# 默认开启代理
+proxy
 
 #===============================
 # 防止多个终端冲突写入历史
