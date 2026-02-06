@@ -115,9 +115,10 @@ alias le='cd /home/vladelaina/code/Learn/'
 alias vl='cd /home/vladelaina/code/vladelaina'
 alias mem='cd /home/vladelaina/code/MemeTray'  # 快速进入 MemeTray 项目目录
 alias ne='cd /mnt/d/code/NekoTick'               # 快速进入 NekoTick 目录
-alias nec='cd /mnt/d/code/NekoTick/worktrees/calendar'
-alias net='cd /mnt/d/code/NekoTick/worktrees/todo'
-alias nen='cd /mnt/d/code/NekoTick/worktrees/notes'
+alias nc='cd /mnt/d/code/NekoTick/worktrees/calendar'
+alias nt='cd /mnt/d/code/NekoTick/worktrees/todo'
+alias nn='cd /mnt/d/code/NekoTick/worktrees/notes'
+alias na='cd /mnt/d/code/NekoTick/worktrees/ai'
 
 # NekoTick 开发模式：开关控制（有则关，无则开），后台静默运行
 unalias nek 2>/dev/null # 确保移除同名别名，避免冲突
@@ -296,6 +297,7 @@ alias mm='git merge main'
 alias mc='git -C /mnt/d/code/NekoTick merge calendar'
 alias mt='git -C /mnt/d/code/NekoTick merge todo'
 alias mn='git -C /mnt/d/code/NekoTick merge notes'
+alias mai='git -C /mnt/d/code/NekoTick merge ai' # ma is taken by xmake
 alias mp='git -C /mnt/d/code/NekoTick push origin main'
 
 
@@ -445,19 +447,11 @@ zstyle :compinstall filename '/home/vladelaina/.zshrc'   # 自动补全配置文
 autoload -Uz compinit                            # 加载补全初始化函数
 compinit                                         # 初始化补全
 # ==================================================
-# 🌐 网络代理设置 (优化版)
+# 🌐 网络代理设置 (稳定版 - Localhost)
 # ==================================================
-# 端口定义
 export HOST_PROXY_PORT=10808
-
-# 获取宿主机 IP
-# 尝试检测是否启用了镜像网络模式
-if grep -q "networkingMode=mirrored" /mnt/c/Users/vladelaina/.wslconfig 2>/dev/null; then
-    export WINDOWS_HOST_IP="127.0.0.1"
-else
-    # 传统 NAT 模式获取 IP
-    export WINDOWS_HOST_IP=$(ip route | grep default | awk '{print $3}')
-fi
+# 强制使用 localhost，因为 WSL 镜像模式下 localhost 互通且不受防火墙拦截
+export WINDOWS_HOST_IP="127.0.0.1"
 
 # 开启代理函数
 proxy() {
@@ -466,11 +460,15 @@ proxy() {
     export HTTP_PROXY="http://${WINDOWS_HOST_IP}:${HOST_PROXY_PORT}"
     export HTTPS_PROXY="http://${WINDOWS_HOST_IP}:${HOST_PROXY_PORT}"
     export ALL_PROXY="socks5://${WINDOWS_HOST_IP}:${HOST_PROXY_PORT}"
+    
+    # 关键修复：强制 Node.js 优先使用 IPv4
+    # 这解决了 localhost 被解析为 IPv6 (::1) 导致连接间歇性失败的问题
+    export NODE_OPTIONS='--dns-result-order=ipv4first'
 }
 
 # 关闭代理函数
 unproxy() {
-    unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY ALL_PROXY
+    unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY ALL_PROXY NODE_OPTIONS
     echo "🚫 Proxy OFF"
 }
 
