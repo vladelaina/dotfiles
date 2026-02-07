@@ -297,11 +297,10 @@ alias mm='git merge main'
 alias mc='git -C /mnt/d/code/NekoTick merge calendar'
 alias mt='git -C /mnt/d/code/NekoTick merge todo'
 alias mn='git -C /mnt/d/code/NekoTick merge notes'
-alias mai='git -C /mnt/d/code/NekoTick merge ai' # ma is taken by xmake
+alias ma='git -C /mnt/d/code/NekoTick merge ai' # ma is taken by xmake
 alias mp='git -C /mnt/d/code/NekoTick push origin main'
 
 
-alias ma='xmake'
 alias mr='xmake run'
 
 cam() {
