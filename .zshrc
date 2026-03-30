@@ -85,6 +85,8 @@ crh() {
 # ==================================================
 alias sz='source ~/.zshrc'                      # 重新加载配置
 alias zs='nvim ~/.zshrc'                        # 编辑配置文件
+alias co='codex'                                # 启动 Codex
+alias coc='codex resume --last'                 # 恢复上一个 Codex 会话
 
 # ==================================================
 # 📝 编辑器 & 项目快捷打开
@@ -118,6 +120,8 @@ alias nn='cd /mnt/d/code/NekoTick'               # 快速进入 NekoTick 主仓�
 alias n1='cd /mnt/d/code/NekoTick/worktrees/1'
 alias n2='cd /mnt/d/code/NekoTick/worktrees/2'
 alias n3='cd /mnt/d/code/NekoTick/worktrees/3'
+alias n4='cd /mnt/d/code/NekoTick/worktrees/4'
+alias n5='cd /mnt/d/code/NekoTick/worktrees/5'
 alias ne='cd /mnt/d/code/NekoTick/worktrees/end'
 alias na='cd /mnt/d/code/NekoTick/worktrees/ai'
 
