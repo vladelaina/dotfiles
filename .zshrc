@@ -114,10 +114,11 @@ alias caw='cd /home/vladelaina/code/web/Catime'  # 快速进入 web/Catime 目�
 alias le='cd /home/vladelaina/code/Learn/'
 alias vl='cd /home/vladelaina/code/vladelaina'
 alias mem='cd /home/vladelaina/code/MemeTray'  # 快速进入 MemeTray 项目目录
-alias ne='cd /mnt/d/code/NekoTick'               # 快速进入 NekoTick 目录
-alias nc='cd /mnt/d/code/NekoTick/worktrees/calendar'
-alias nt='cd /mnt/d/code/NekoTick/worktrees/todo'
-alias nn='cd /mnt/d/code/NekoTick/worktrees/notes'
+alias nn='cd /mnt/d/code/NekoTick'               # 快速进入 NekoTick 主仓库
+alias n1='cd /mnt/d/code/NekoTick/worktrees/1'
+alias n2='cd /mnt/d/code/NekoTick/worktrees/2'
+alias n3='cd /mnt/d/code/NekoTick/worktrees/3'
+alias ne='cd /mnt/d/code/NekoTick/worktrees/end'
 alias na='cd /mnt/d/code/NekoTick/worktrees/ai'
 
 # NekoTick 开发模式：开关控制（有则关，无则开），后台静默运行
@@ -207,10 +208,11 @@ alias ys='yay -S'                                # 安装 AUR 包
 alias yr='yay -R'                                # 删除包
 
 # ==================================================
-# ♊ Gemini API 配置切换
+# 🔐 API Token 配置
 # ==================================================
 # 从单独的文件中加载 token（安全起见，不直接存储在 .zshrc）
 [ -f ~/.config/tokens/gemini_tokens ] && source ~/.config/tokens/gemini_tokens
+[ -f ~/.config/tokens/neko_tokens ] && source ~/.config/tokens/neko_tokens
 
 # ==================================================
 # 🌐 服务器连接
@@ -233,6 +235,7 @@ alias s='git status'                             # 查看 Git 状态
 alias op='git commit -am optimization'           # 提交优化日志
 alias te='git commit -am temporary'              # 提交临时日志
 alias ckm='git checkout main'                   # 切换到主分支
+alias cks='git checkout stable'                 # 切换到 stable 分支
 alias ckg='git checkout gh-pages'            
 
 # ==================================================
@@ -294,9 +297,10 @@ cm() {
     powershell.exe -Command "Start-Process -FilePath '$WINDOWS_PATH' -WorkingDirectory 'C:\Users\vladelaina\Desktop'"
 }
 alias mm='git merge main'
-alias mc='git -C /mnt/d/code/NekoTick merge calendar'
-alias mt='git -C /mnt/d/code/NekoTick merge todo'
-alias mn='git -C /mnt/d/code/NekoTick merge notes'
+alias m1='git -C /mnt/d/code/NekoTick merge 1'
+alias m2='git -C /mnt/d/code/NekoTick merge 2'
+alias m3='git -C /mnt/d/code/NekoTick merge 3'
+alias me='git -C /mnt/d/code/NekoTick merge end'
 alias ma='git -C /mnt/d/code/NekoTick merge ai' # ma is taken by xmake
 alias mp='git -C /mnt/d/code/NekoTick push origin main'
 
