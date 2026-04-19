@@ -228,6 +228,7 @@ alias wsv='ssh $SSH_SERVER'                      # 快速连接 ssh 服务器 (v
 # 🧬 Git 快捷命令
 # ==================================================
 alias ga='git add .'                             # 添加所有变更
+alias cag='cd /home/vladelaina/code/web/Catime' # 进入 Catime 项目目录
 alias cl='git clone'
 alias p='git push'                               # 推送到远程仓库
 alias pu='git pull'                              # 拉取远程仓库内容
