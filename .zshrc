@@ -116,24 +116,24 @@ alias caw='cd /home/vladelaina/code/web/Catime'  # 快速进入 web/Catime 目�
 alias le='cd /home/vladelaina/code/Learn/'
 alias vl='cd /home/vladelaina/code/vladelaina'
 alias mem='cd /home/vladelaina/code/MemeTray'  # 快速进入 MemeTray 项目目录
-alias nn='cd /mnt/d/code/NekoTick'               # 快速进入 NekoTick 主仓库
-alias n1='cd /mnt/d/code/NekoTick/worktrees/1'
-alias n2='cd /mnt/d/code/NekoTick/worktrees/2'
-alias n3='cd /mnt/d/code/NekoTick/worktrees/3'
-alias n4='cd /mnt/d/code/NekoTick/worktrees/4'
-alias n5='cd /mnt/d/code/NekoTick/worktrees/5'
-alias ne='cd /mnt/d/code/NekoTick/worktrees/end'
-alias na='cd /mnt/d/code/NekoTick/worktrees/ai'
+alias vv='cd /mnt/d/code/vlaina'               # 快速进入 vlaina 主仓库
+alias v1='cd /mnt/d/code/vlaina/worktrees/1'
+alias v2='cd /mnt/d/code/vlaina/worktrees/2'
+alias v3='cd /mnt/d/code/vlaina/worktrees/3'
+alias v4='cd /mnt/d/code/vlaina/worktrees/4'
+alias v5='cd /mnt/d/code/vlaina/worktrees/5'
+alias ve='cd /mnt/d/code/vlaina/worktrees/end'
+alias va='cd /mnt/d/code/vlaina/worktrees/ai'
 
-# NekoTick 开发模式：开关控制（有则关，无则开），后台静默运行
+# vlaina 开发模式：开关控制（有则关，无则开），后台静默运行
 unalias nek 2>/dev/null # 确保移除同名别名，避免冲突
 nek() {
     powershell.exe -Command "
-    if ((Get-Process -Name NekoTick -ErrorAction SilentlyContinue) -or (Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue)) {
-        Stop-Process -Name NekoTick -Force -ErrorAction SilentlyContinue;
+    if ((Get-Process -Name vlaina -ErrorAction SilentlyContinue) -or (Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue)) {
+        Stop-Process -Name vlaina -Force -ErrorAction SilentlyContinue;
         Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess | ForEach-Object { Stop-Process -Id \$_ -Force }
     } else {
-        Start-Process cmd -ArgumentList '/c cd /d D:\code\NekoTick && pnpm tauri dev' -WindowStyle Hidden
+        Start-Process cmd -ArgumentList '/c cd /d D:\code\vlaina && pnpm tauri dev' -WindowStyle Hidden
     }
     "
 }
@@ -144,7 +144,7 @@ nelic() {
     if (Get-NetTCPConnection -LocalPort 8787 -ErrorAction SilentlyContinue) {
         Get-NetTCPConnection -LocalPort 8787 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess | ForEach-Object { Stop-Process -Id \$_ -Force }
     } else {
-        Start-Process cmd -ArgumentList '/c cd /d D:\code\NekoTick && pnpm dev:license-server' -WindowStyle Hidden
+        Start-Process cmd -ArgumentList '/c cd /d D:\code\vlaina && pnpm dev:license-server' -WindowStyle Hidden
     }
     "
 }
@@ -302,12 +302,12 @@ cm() {
     powershell.exe -Command "Start-Process -FilePath '$WINDOWS_PATH' -WorkingDirectory 'C:\Users\vladelaina\Desktop'"
 }
 alias mm='git merge main'
-alias m1='git -C /mnt/d/code/NekoTick merge 1'
-alias m2='git -C /mnt/d/code/NekoTick merge 2'
-alias m3='git -C /mnt/d/code/NekoTick merge 3'
-alias me='git -C /mnt/d/code/NekoTick merge end'
-alias ma='git -C /mnt/d/code/NekoTick merge ai' # ma is taken by xmake
-alias mp='git -C /mnt/d/code/NekoTick push origin main'
+alias m1='git -C /mnt/d/code/vlaina merge 1'
+alias m2='git -C /mnt/d/code/vlaina merge 2'
+alias m3='git -C /mnt/d/code/vlaina merge 3'
+alias me='git -C /mnt/d/code/vlaina merge end'
+alias ma='git -C /mnt/d/code/vlaina merge ai' # ma is taken by xmake
+alias mp='git -C /mnt/d/code/vlaina push origin main'
 
 
 alias mr='xmake run'
